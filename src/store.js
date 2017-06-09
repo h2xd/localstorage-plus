@@ -62,12 +62,12 @@ var Store = function(name) {
      * Set a defined key with the given value
      * @param {string} key          The name of the value
      * @param {mixed}  data         The data to store, can be any datatype
-     * @param {int}    [expiresIn]  When should this value expire
+     * @param {int}    [expiresAt]  When should this value expire
      */
-    function set(key, data, expiresIn) {
+    function set(key, data, expiresAt) {
         try {
             if (expires !== void(0) && typeof expires === 'number') {
-                STORE.setItem(storeName + key + EXPIRE_KEY, expiresIn.toString());
+                STORE.setItem(storeName + key + EXPIRE_KEY, expiresAt.toString());
             }
 
             STORE.setItem(storeName + key, decodeObjectString(data));
