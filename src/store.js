@@ -60,9 +60,10 @@ var Store = function(name) {
 
     /**
      * Set a defined key with the given value
-     * @param {string} key          The name of the value
-     * @param {mixed}  data         The data to store, can be any datatype
-     * @param {int}    [expiresAt]  When should this value expire
+     * @param  {string} key          The name of the value
+     * @param  {mixed}  data         The data to store, can be any datatype
+     * @param  {int}    [expiresAt]  When should this value expire
+     * @return {void}
      */
     function set(key, data, expiresAt) {
         try {
@@ -123,7 +124,7 @@ var Store = function(name) {
     }
 
     /**
-     * flush expired values
+     * flush expired values defined in this store
      * @return {void}
      */
     function flushExpired() {
