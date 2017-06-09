@@ -193,7 +193,7 @@ Store.flush = function() {
 
 /**
  * remove all expired items from the whole store
- * @return {[type]} [description]
+ * @return {void}
  */
 Store.flushExpired = function() {
     util.flushExpired(ROOT);
