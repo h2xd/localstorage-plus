@@ -1,0 +1,27 @@
+{
+  "name": "localstorage-plus",
+  "version": "0.0.1",
+  "description": "Simple helper extender class for the localStorage browser implementation",
+  "main": "src/store.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpaceRhino/localstorage-plus.git"
+  },
+  "keywords": [
+    "localstorage",
+    "extension",
+    "class",
+    "js",
+    "frontend",
+    "client"
+  ],
+  "author": "Andreas Schujkow <a.schujkow@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SpaceRhino/localstorage-plus/issues"
+  },
+  "homepage": "https://github.com/SpaceRhino/localstorage-plus#readme"
+}
