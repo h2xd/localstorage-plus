@@ -4,7 +4,8 @@
   "description": "Simple helper extender class for the localStorage browser implementation",
   "main": "src/store.js",
   "scripts": {
-    "test": "./node_modules/tape/bin/tape tests/**/*.js | faucet",
+    "test": "node tests/store.spec.js | faucet && zuul --local 9966 -- ./tests/store.spec.js",
+    "ci": "node tests/store.spec.js",
     "build": "./node_modules/uglify-js/bin/uglifyjs ./src/store.js --output ./dist/store.min.js"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "faucet": "0.0.1",
     "mock-local-storage": "^1.0.2",
     "tape": "^4.6.3",
-    "uglify-js": "^3.0.15"
+    "uglify-js": "^3.0.15",
+    "zuul": "^3.11.1"
   }
 }

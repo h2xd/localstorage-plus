@@ -14,12 +14,8 @@ var EXPIRE_KEY = '--exp=';
  */
 var util = {
     remove: function(key) {
-        try {
-            STORE.removeItem(key.replace(EXPIRE_KEY, ''));
-            STORE.removeItem(key);
-        } catch(error) {
-            throw error;
-        }
+        STORE.removeItem(key.replace(EXPIRE_KEY, ''));
+        STORE.removeItem(key);
     },
     flush: function(index) {
         Object.keys(STORE).map(function(key) {
@@ -55,7 +51,7 @@ var Store = function(name) {
             storeName = validateStoreName(name);
             flushExpired();
         } catch(error) {
-            throw error;
+            console.error(error);
         }
     }
 
@@ -150,8 +146,13 @@ var Store = function(name) {
      * @throws {TypeError}
      */
     function validateStoreName(storeName) {
-        if (storeName === undefined) throw new TypeError('Please provide a storename');
-        if (typeof(storeName) !== 'string') throw new TypeError('The storename has to be a string');
+        if (storeName === undefined) {
+            throw new TypeError('Please provide a storename');
+        }
+
+        if (typeof(storeName) !== 'string') {
+            throw new TypeError('The storename has to be a string');
+        }
 
         var chargedStoreName = storeName = ROOT + storeName + '-';
         return chargedStoreName;

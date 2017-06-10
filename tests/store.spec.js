@@ -1,9 +1,11 @@
 'use strict';
 
 // setup the headerless localStorage
-require('mock-local-storage');
-global.window = {
-    localStorage: global.localStorage
+if (global.window === undefined) {
+    require('mock-local-storage');
+    global.window = {
+        localStorage: global.localStorage
+    }
 }
 
 // setup the dependencies
