@@ -16,7 +16,7 @@ Simple helper class for the browsers localStorage implementation
 ```javascript
 const Store = require('localstorage-plus');
 
-var foo = new Store(<string:name>);
+var foo = new Store(<string:name>); 
 ```
 
 When a new store instace gets created, the constructor will run a flushExpired automaticly.
