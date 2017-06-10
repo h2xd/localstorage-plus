@@ -1,4 +1,7 @@
 language: node_js
+script: npm run ci
+addons:
+  - code_climate
 node_js:
   - "node"
   - "7"
