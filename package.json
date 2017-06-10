@@ -1,6 +1,6 @@
 {
   "name": "localstorage-plus",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple helper extender class for the localStorage browser implementation",
   "main": "src/store.js",
   "scripts": {
