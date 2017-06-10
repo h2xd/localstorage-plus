@@ -3,7 +3,7 @@ node_js:
   - "node"
   - "7"
 before_script:
-  - ./node_modules/codeclimate-test-reporter/bin/codeclimate.js before-build
+  - ./node_modules/codeclimate-test-reporter/bin/codeclimate.js
 script:
   - bundle exec rspec
   - ./node_modules/codeclimate-test-reporter/bin/codeclimate.js after-build --exit-code $TRAVIS_TEST_RESULT;
