@@ -5,7 +5,8 @@ Simple helper class for the browsers localStorage implementation
 ## TODOS
 
 - [x] basic implementation
-- [ ] test automatisation
+ - [x] ~get all method~ -> implemented in get, when you call the method w/o a parameter
+- [x] test automatisation
 - [ ] push to npm registry
 
 ## Create instance
