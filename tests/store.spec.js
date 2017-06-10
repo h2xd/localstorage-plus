@@ -7,13 +7,13 @@ global.window = {
 }
 
 // setup the dependencies
-const Store = require('../dist/store.min.js');
-const test = require('tape');
+const Store = require('../src/store.js');
+const test  = require('tape');
 
 
 // define test variables
 var name = 'John Doe';
-var age = 33;
+var age  = 33;
 var wife = {
     name: 'Jane Doe',
     age: 31
