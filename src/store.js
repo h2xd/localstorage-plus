@@ -32,7 +32,7 @@ var util = {
         if (Object.keys(STORE).length > 0) {
             Object.keys(STORE).map(function(key) {
                 if (key.indexOf(index) === 0 && key.indexOf(EXPIRE_KEY) !== -1) {
-                    if (parseInt(STORE.getItem(key)) < Date.now()) {
+                    if (STORE.getItem(key) < Date.now()) {
                         util.remove(key);
                     }
                 }
@@ -76,7 +76,7 @@ var Store = function(name) {
 
             return true;
         } catch(error) {
-            throw error;
+            console.error(error);
             return false;
         }
     }
@@ -92,20 +92,19 @@ var Store = function(name) {
                 var result = encodeObjectString(STORE.getItem(storeName + key));
                 return result !== null ? result : false;
             } else {
-                var result = {};
+                var resultAll = {};
 
                 Object.keys(STORE).map(function(key) {
-                    if (key.indexOf(storeName) == 0 && key.indexOf(EXPIRE_KEY) === -1) {
+                    if (key.indexOf(storeName) === 0 && key.indexOf(EXPIRE_KEY) === -1) {
                         var varKey = key.replace(storeName, '');
-                        result[varKey] = get(varKey);
+                        resultAll[varKey] = get(varKey);
                     }
                 });
 
-                return result;
+                return resultAll;
             }
         } catch(error) {
             console.error(error)
-            throw error;
             return false;
         }
     }
@@ -148,12 +147,14 @@ var Store = function(name) {
      * generate a store name
      * @param  {string} storeName  The name of the store instance
      * @return {string}            The generated name
+     * @throws {TypeError}
      */
     function validateStoreName(storeName) {
-        if (storeName === void(0)) throw new TypeError('Please provide a storename');
+        if (storeName === undefined) throw new TypeError('Please provide a storename');
         if (typeof(storeName) !== 'string') throw new TypeError('The storename has to be a string');
 
-        return storeName = ROOT + storeName + '-';
+        var chargedStoreName = storeName = ROOT + storeName + '-';
+        return chargedStoreName;
     }
 
     /**
@@ -163,7 +164,7 @@ var Store = function(name) {
      * @return {mixed}        The decoded value
      */
     function decodeObjectString(data) {
-        if (typeof data == 'object') {
+        if (typeof data === 'object') {
             return JSON.stringify(data);
         }
 
@@ -176,14 +177,13 @@ var Store = function(name) {
      * @return {mixed}       The encoded value
      */
     function encodeObjectString(data) {
-        if (typeof data == 'string') {
+        if (typeof data === 'string') {
             try {
                 return JSON.parse(data);
             } catch(e) {
+                return data;
             }
         }
-
-        return data;
     }
 
     __construct(name);
