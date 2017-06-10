@@ -1,6 +1,8 @@
 # localstorage-plus
 Simple helper class for the browsers localStorage implementation
 
+[![Build Status](https://travis-ci.org/SpaceRhino/localstorage-plus.svg?branch=master)](https://travis-ci.org/SpaceRhino/localstorage-plus)
+
 
 ## TODOS
 
