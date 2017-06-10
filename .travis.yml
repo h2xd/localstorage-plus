@@ -2,3 +2,8 @@ language: node_js
 node_js:
   - "node"
   - "7"
+before_script:
+  - cc-test-reporter
+script:
+  - bundle exec rspec
+  - cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT;
