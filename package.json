@@ -4,7 +4,8 @@
   "description": "Simple helper extender class for the localStorage browser implementation",
   "main": "src/store.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "./node_modules/tape/bin/tape tests/**/*.js | faucet",
+    "build": "./node_modules/uglify-js/bin/uglifyjs ./src/store.js --output ./dist/store.min.js"
   },
   "repository": {
     "type": "git",
@@ -23,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/SpaceRhino/localstorage-plus/issues"
   },
-  "homepage": "https://github.com/SpaceRhino/localstorage-plus#readme"
+  "homepage": "https://github.com/SpaceRhino/localstorage-plus#readme",
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "mock-local-storage": "^1.0.2",
+    "tape": "^4.6.3",
+    "uglify-js": "^3.0.15"
+  }
 }
