@@ -1,7 +1,10 @@
+[![Build Status](https://travis-ci.org/SpaceRhino/localstorage-plus.svg?branch=master)](https://travis-ci.org/SpaceRhino/localstorage-plus)
+[![Code Climate](https://img.shields.io/codeclimate/github/SpaceRhino/localstorage-plus.svg)]()
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/SpaceRhino/localstorage-plus.svg)]()
+
 # localstorage-plus
 Simple helper class for the browsers localStorage implementation
 
-[![Build Status](https://travis-ci.org/SpaceRhino/localstorage-plus.svg?branch=master)](https://travis-ci.org/SpaceRhino/localstorage-plus)
 
 
 ## TODOS
@@ -16,7 +19,7 @@ Simple helper class for the browsers localStorage implementation
 ```javascript
 const Store = require('localstorage-plus');
 
-var foo = new Store(<string:name>); 
+var foo = new Store(<string:name>);
 ```
 
 When a new store instace gets created, the constructor will run a flushExpired automaticly.
