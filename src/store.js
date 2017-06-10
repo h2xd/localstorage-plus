@@ -22,7 +22,7 @@ var util = {
         }
     },
     flush: function(index) {
-        Object.keys(STORE).map(key => {
+        Object.keys(STORE).map(function(key) {
             if (key.indexOf(index) === 0) {
                 util.remove(key);
             }
@@ -30,7 +30,7 @@ var util = {
     },
     flushExpired: function(index) {
         if (Object.keys(STORE).length > 0) {
-            Object.keys(STORE).map(key => {
+            Object.keys(STORE).map(function(key) {
                 if (key.indexOf(index) === 0 && key.indexOf(EXPIRE_KEY) !== -1) {
                     if (parseInt(STORE.getItem(key)) < Date.now()) {
                         util.remove(key);
@@ -43,6 +43,7 @@ var util = {
 
 /**
  * Define a new store
+ * @class
  * @param  {string} name The name of the store
  * @return {Store}       The store instance
  */
@@ -67,7 +68,7 @@ var Store = function(name) {
      */
     function set(key, data, expiresAt) {
         try {
-            if (expires !== void(0) && typeof expires === 'number') {
+            if (expiresAt !== undefined && typeof expiresAt === 'number') {
                 STORE.setItem(storeName + key + EXPIRE_KEY, expiresAt.toString());
             }
 
@@ -90,10 +91,22 @@ var Store = function(name) {
             if (key !== undefined) {
                 var result = encodeObjectString(STORE.getItem(storeName + key));
                 return result !== null ? result : false;
+            } else {
+                var result = {};
+
+                Object.keys(STORE).map(function(key) {
+                    if (key.indexOf(storeName) == 0 && key.indexOf(EXPIRE_KEY) === -1) {
+                        var varKey = key.replace(storeName, '');
+                        result[varKey] = get(varKey);
+                    }
+                });
+
+                return result;
             }
         } catch(error) {
-            return false;
+            console.error(error)
             throw error;
+            return false;
         }
     }
 
@@ -120,7 +133,7 @@ var Store = function(name) {
      * @return {void}
      */
     function remove(key) {
-        util.remove(key);
+        util.remove(storeName + key);
     }
 
     /**
@@ -164,7 +177,10 @@ var Store = function(name) {
      */
     function encodeObjectString(data) {
         if (typeof data == 'string') {
-            return JSON.parse(data);
+            try {
+                return JSON.parse(data);
+            } catch(e) {
+            }
         }
 
         return data;
@@ -199,6 +215,9 @@ Store.flush = function() {
 Store.flushExpired = function() {
     util.flushExpired(ROOT);
 }
+
+// remove the expired values
+Store.flushExpired();
 
 // export the module
 if (typeof module !== 'undefined' && module.exports) {
