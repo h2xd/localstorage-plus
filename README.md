@@ -124,7 +124,7 @@ var userStore = new Store('user');
 userStore.set('name', 'John Doe');                   // -> true
 userStore.set('wife', 'Jane Doe');                   // -> true
 
-// set an value with an expire
+// set a value with an expire date
 userStore.set('token', 'secret', Date.now() + 2000); // -> true
 ```
 
