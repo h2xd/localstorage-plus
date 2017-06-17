@@ -41,18 +41,18 @@
     /**
      * Define a new store
      * @class
-     * @param  {string} name                    The name of the store
-     * @param  {boolean} [suppressFlushExpired] should the flush expired not run
-     * @return {Store}                          The store instance
+     * @param  {string} name            The name of the store
+     * @param  {boolean} [flushExpired] should the flush expired not run
+     * @return {Store}                  The store instance
      */
-    var Store = function(name, suppressFlushExpired) {
+    var Store = function(name, flushExpired) {
         var storeName;
 
         function __construct(name) {
             try {
                 storeName = validateStoreName(name);
 
-                if (suppressFlushExpired === undefined || suppressFlushExpired !== false) {
+                if (flushExpired === undefined || flushExpired !== false) {
                     flushExpired();
                 }
             } catch(error) {
