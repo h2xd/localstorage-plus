@@ -22,7 +22,7 @@ var wife = {
 }
 
 var timeout = 2000;
-
+localStorage.clear();
 
 // test the store initialization
 test('new Store', assert => {
@@ -111,7 +111,7 @@ test('Store.flush', assert => {
 });
 
 
-// test the statioc flushExpired method
+// test the static flushExpired method
 test('<static> Store.flushExpired', assert => {
     var flushStore = new Store('flushStatic');
     var otherStore = new Store('otherFlushStore');
@@ -164,6 +164,26 @@ test('new Store ; auto flush expired values', assert => {
         assert.plan(1);
 
         var flushStore = new Store('flush');
+
+        assert.equal(Object.keys(flushStore.get()).length, expected);
+    }, timeout);
+});
+
+// the the auto flush method on Store initialization
+test('new Store ; suppress auto flush expired values', assert => {
+    var flushStore = new Store('suppressFlush');
+    var expected   = 5;
+
+    flushStore.set('1', 1, Date.now() + timeout - 1000);
+    flushStore.set('2', 2, Date.now() + timeout - 100);
+    flushStore.set('3', 3, Date.now() + timeout - 50);
+    flushStore.set('4', 4, Date.now() + timeout + 1000);
+    flushStore.set('5', 5, Date.now() + timeout + 5000);
+
+    setTimeout(function() {
+        assert.plan(1);
+
+        var flushStore = new Store('suppressFlush', false);
 
         assert.equal(Object.keys(flushStore.get()).length, expected);
     }, timeout);
