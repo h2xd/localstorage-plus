@@ -45,14 +45,14 @@
      * @param  {boolean} [flushExpired] should the flush expired not run
      * @return {Store}                  The store instance
      */
-    var Store = function(name, flushExpired) {
+    var Store = function(name, autoFlushExpired) {
         var storeName;
 
         function __construct(name) {
             try {
                 storeName = validateStoreName(name);
 
-                if (flushExpired === undefined || flushExpired !== false) {
+                if (autoFlushExpired === undefined || autoFlushExpired !== false) {
                     flushExpired();
                 }
             } catch(error) {
