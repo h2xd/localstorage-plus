@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node tests/store.spec.js | faucet && zuul --local 9966 -- ./tests/store.spec.js",
     "ci": "node tests/store.spec.js",
-    "build": "./node_modules/uglify-js/bin/uglifyjs ./src/store.js --output ./dist/store.min.js"
+    "build": "./node_modules/uglify-js/bin/uglifyjs ./src/store.js -m -c --output ./dist/store.min.js"
   },
   "repository": {
     "type": "git",
