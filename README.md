@@ -4,7 +4,7 @@
 <!-- [![Code Climate](https://img.shields.io/codeclimate/coverage/github/SpaceRhino/localstorage-plus.svg)]() -->
 
 # localstorage-plus
-Simple helper class for the browsers localStorage implementation
+Simple helper class that extends the localStorage implementation
 
 # Contents
 
@@ -24,6 +24,7 @@ Simple helper class for the browsers localStorage implementation
 		- [Store#remove](#storeremove)
 		- [Store#flush](#storeflush)
 		- [Store#flushExpired](#storeflushexpired)
+- [Test](#test)
 
 <!-- /TOC -->
 
@@ -211,4 +212,12 @@ var Store = require('localstorage-plus');
 var userStore = new Store('user');
 
 userStore.flushExpired();
+```
+
+## Test
+
+To run a test just enter the following command
+
+```
+npm run test
 ```
