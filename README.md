@@ -58,14 +58,14 @@ You can also download the project and include the `store.min.js` file into your 
 
 
 | param        | type    | flag    | description                       |
-|--------------|---------|---------|-----------------------------------|
+|:-------------|:--------|:--------|:----------------------------------|
 | name         | string  |         | The name of the store             |
 | flushExpired | boolean | optinal | run auto flush for expired values |
 
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user')
+var UserStore = new Store('user')
 ```
 
 _If you are using the `<script>` way, the `Store` will be applied to the `window` object._
@@ -76,14 +76,14 @@ _If you are using the `<script>` way, the `Store` will be applied to the `window
 When a new Store instace gets created, the constructor will run the flushExpired method automaticly, accept your provide a boolean as the second parameter like so:
 
 ```javascript
-var userStore = new Store('userStore', false);
+var UserStore = new Store('UserStore', false);
 ```
 
 ### Static methods
 
 #### Store.flush
 
-Removes all localStore entries created by localstorage-plus
+Removes all Store entries
 
 *return: void*
 
@@ -95,7 +95,7 @@ Store.flush();
 
 #### Store.flushExpired
 
-Removes all expired localStore entries created by localstorage-plus
+Removes all expired Store entries
 
 *return: void*
 
@@ -109,32 +109,32 @@ Store.flushExpired();
 
 Set a key with the value to store
 
-| param     | type    | flag     | description                            |
-|-----------|---------|----------|----------------------------------------|
-| key       | string  |          | The name of the value                  |
-| data      | mixed   |          | The data to store, can be any datatype |
-| expiresAt | integer | optional | When should this value expire          |
+| param     | type    | flag     | description                   |
+|:----------|:--------|:---------|:------------------------------|
+| key       | string  |          | The name of the value         |
+| data      | mixed   |          | The data to store             |
+| expiresAt | integer | optional | When should this value expire |
 
 *return: boolean*
 
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user');
+var UserStore = new Store('user');
 
-userStore.set('name', 'John Doe');                   // -> true
-userStore.set('wife', 'Jane Doe');                   // -> true
+UserStore.set('name', 'John Doe');                   // -> true
+UserStore.set('wife', 'Jane Doe');                   // -> true
 
-// set a value with an expire date
-userStore.set('token', 'secret', Date.now() + 2000); // -> true
+// set a value with an expire date (2s)
+UserStore.set('token', 'secret', Date.now() + 2000); // -> true
 ```
 
 #### Store#isset
 
-Check if the given key exists in the store
+Check if the given key exists
 
 | param | type   | description                           |
-|-------|--------|---------------------------------------|
+|:------|:-------|:--------------------------------------|
 | key   | string | Key defined in [Store.set](#storeset) |
 
 *return: boolean*
@@ -142,10 +142,10 @@ Check if the given key exists in the store
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user');
+var UserStore = new Store('user');
 
-userStore.isset('user');  // -> true
-userStore.isset('age');   // -> false
+UserStore.isset('user');  // -> true
+UserStore.isset('age');   // -> false
 ```
 
 #### Store#get
@@ -153,7 +153,7 @@ userStore.isset('age');   // -> false
 Get the value stored under the given key, or the whole store
 
 | param | type   | flag     | description                            |
-|-------|--------|----------|----------------------------------------|
+|:------|:-------|:---------|:---------------------------------------|
 | key   | string | optional | Key defined in [Store.set](#storeset)  |
 
 *return: object, mixed*
@@ -161,19 +161,19 @@ Get the value stored under the given key, or the whole store
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user');
+var UserStore = new Store('user');
 
-userStore.get('name');   // -> John Doe
-userStore.get();         // -> { name: 'John Doe', wife: 'Jane Doe' }
+UserStore.get('name');   // -> John Doe
+UserStore.get();         // -> { name: 'John Doe', wife: 'Jane Doe' }
 ```
 
 
 #### Store#remove
 
-Remove an item, by the given key
+Remove an item
 
 | param | type   | description                           |
-|-------|--------|---------------------------------------|
+|:------|:-------|:--------------------------------------|
 | key   | string | Key defined in [Store.set](#storeset) |
 
 *return: boolean*
@@ -181,23 +181,23 @@ Remove an item, by the given key
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user');
+var UserStore = new Store('user');
 
-userStore.remove('name') // -> true
+UserStore.remove('name') // -> true
 ```
 
 #### Store#flush
 
-Flush all values, that are stored in the store instance
+Flush all values, that are stored in the `Store` instance
 
 *return: void*
 
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user');
+var UserStore = new Store('user');
 
-userStore.flush();
+UserStore.flush();
 ```
 
 #### Store#flushExpired
@@ -209,9 +209,9 @@ Flush expired values defined in this store
 ```javascript
 var Store = require('localstorage-plus');
 
-var userStore = new Store('user');
+var UserStore = new Store('user');
 
-userStore.flushExpired();
+UserStore.flushExpired();
 ```
 
 ## Test
