@@ -116,7 +116,7 @@
          * @return {boolean}      Key defined or not
          */
         function isset(key) {
-            return get(key) !== false ? true : false;
+            return STORE.getItem(storeName + key) !== null ? true : false;
         }
 
         /**
