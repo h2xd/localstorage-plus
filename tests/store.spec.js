@@ -70,10 +70,10 @@ test('Store.isset', assert => {
     var userStore = new Store('userStore');
 
     assert.plan(4);
-    assert.true(userStore.get('name'));
-    assert.true(userStore.get('age'));
-    assert.true(userStore.get('wife'));
-    assert.false(userStore.get('randomError'));
+    assert.true(userStore.isset('name'));
+    assert.true(userStore.isset('age'));
+    assert.true(userStore.isset('wife'));
+    assert.false(userStore.isset('randomError'));
 });
 
 
